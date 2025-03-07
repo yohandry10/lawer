@@ -36,8 +36,8 @@ const About: React.FC = () => {
         <div className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl animate-float-delay-1" />
       </div>
 
-      {/* Contenedor principal sin padding horizontal */}
-      <div className="container max-w-6xl mx-auto">
+      {/* Contenedor principal */}
+      <div className="container max-w-6xl mx-auto px-4">
         {/* Título centrado */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,15 +56,15 @@ const About: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Contenedor del grid con mayor desplazamiento */}
-        <div style={{ position: 'relative', left: '-70px' }}>
-          <div className="grid md:grid-cols-2 gap-8 items-center text-left">
+        {/* Contenedor del grid con ajuste responsivo */}
+        <div className="md:relative md:left-[-70px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-left">
             {/* Imagen (izquierda) */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-start"
+              className="flex justify-center md:justify-start"
             >
               <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-xl">
                 <img
@@ -95,7 +95,7 @@ const About: React.FC = () => {
                 <em>exigibles</em>, ejecutables ante el Poder Judicial...
               </p>
               <p className="text-lg md:text-xl text-secondary-700 mb-6">
-                Nuestras oficinas cuentan con una moderna infraestructura...
+                Nuestras oficinas cuentan con una moderna infraestructura.
               </p>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <button className="btn-outline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
