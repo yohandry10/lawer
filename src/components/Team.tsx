@@ -199,7 +199,7 @@ const Testimonials: React.FC = () => {
           className="text-center mt-16"
         >
           <p className="text-lg text-secondary-700 mb-8 max-w-3xl mx-auto">
-            Nos enorgullece haber ayudado a miles de personas y empresas a resolver sus conflictos de manera efectiva y satisfactoria.
+            Nos enorgullece haber ayudado a cientos de personas y empresas a lo largo de 20 años de experiencia a resolver sus conflictos de manera efectiva y satisfactoria.
           </p>
          
         </motion.div>
