@@ -1,30 +1,28 @@
+// Footer.tsx
+
 import React from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { ChevronRight, MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook } from 'lucide-react';
 import { SiTiktok } from 'react-icons/si';
 
 const socialMedia = [
   {
     name: 'Facebook',
-    url: 'https://www.facebook.com/YourPage',
+    // Nuevo enlace proporcionado
+    url: 'https://www.facebook.com/Acecop211?rdid=zH8wJQrMdHiT57KI&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18drjaEoeG%2F#',
     icon: <Facebook className="w-8 h-8" />,
   },
   {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/YourPage',
-    icon: <Instagram className="w-8 h-8" />,
-  },
-  {
     name: 'TikTok',
-    url: 'https://www.tiktok.com/@YourProfile',
+    // Nuevo enlace proporcionado
+    url: 'https://www.tiktok.com/@acecopconciliaciones?_t=ZM-8uO3Xi4nVEk&_r=1',
     icon: <SiTiktok className="w-8 h-8" />,
   },
   {
     name: 'WhatsApp',
     url: 'https://wa.me/51953051904',
-    // Se carga el ícono desde public/ws.svg y se filtra para que aparezca en blanco
     icon: (
       <img
         src="/ws.svg"
@@ -38,6 +36,16 @@ const socialMedia = [
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+
+  // Aquí tu lista de servicios, si es que la mantienes.
+  const serviciosOfrecidos = [
+    'Incumplimiento de contrato (Civil)',
+    'Indemnización (daños y perjuicios) (Civil)',
+    'Pensión de alimentos (Familia)',
+    'Régimen de visitas (Familia)',
+    'Resolución de contrato (Estado)',
+    'Liquidación de contrato (Estado)',
+  ];
 
   return (
     <footer className="bg-[#03030f] text-gray-300">
@@ -105,21 +113,14 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-bold mb-6">Servicios</h3>
             <ul className="space-y-3">
-              {[
-                'Conciliación Extrajudicial',
-                'Asuntos Inmobiliarios',
-                'Asuntos Comerciales',
-                'Asuntos Familiares',
-                'Asuntos Civiles',
-                'Asesoría Legal',
-              ].map((item, index) => (
+              {serviciosOfrecidos.map((servicio, index) => (
                 <li key={index}>
                   <a
                     href="#"
                     className="text-white/70 hover:text-[#1D7BB8] transition-colors duration-300 flex items-center"
                   >
                     <ChevronRight size={16} className="mr-2" />
-                    {item}
+                    {servicio}
                   </a>
                 </li>
               ))}

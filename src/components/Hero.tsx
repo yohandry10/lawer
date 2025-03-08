@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.8 }}
         >
-          Somos un centro de conciliación con años de experiencia brindando
+          Somos un centro de conciliación con mas de 20 años de experiencia brindando
           soluciones eficaces y duraderas a conflictos de toda índole.
         </motion.p>
 

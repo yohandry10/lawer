@@ -51,7 +51,7 @@ const About: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-primary-500 mx-auto mb-6" />
           <p className="text-xl md:text-2xl text-secondary-700 max-w-3xl mx-auto">
-            Somos un centro de conciliación líder en la prestación de servicios
+            Somos un centro de conciliación con mas de 20 años de experiencia líder en la prestación de servicios
             efectivos de solución de conflictos, comprometidos con la cultura de
             paz y la negociación.
           </p>
@@ -84,11 +84,11 @@ const About: React.FC = () => {
               className="text-block"
             >
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-secondary-900">
-                Centro de Conciliación Perú - Javier Prado
+                Centro de Conciliación ACECOP1
               </h3>
               <p className="text-lg md:text-xl text-secondary-700 mb-4">
-                <strong>El Centro de Conciliación Perú - Javier Prado</strong> es una asociación sin fines de lucro, creada por la{' '}
-                <strong>CÁMARA PERUANA DE CIENCIAS E INNOVACIÓN JURÍDICA</strong>, destinada a promover una cultura de paz y cuyo objetivo
+                <strong>ACECOP</strong> es una asociación sin fines de lucro,
+                destinada a promover una cultura de paz y cuyo objetivo
                 fundamental es la de prestar servicios en el área de medios alternativos de solución de conflictos...
               </p>
               <p className="text-lg md:text-xl text-secondary-700 mb-4">

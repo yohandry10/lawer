@@ -23,7 +23,7 @@ const Services: React.FC = () => {
     },
     {
       icon: faPuzzlePiece,
-      title: 'Contrataciones en materia civil',
+      title: 'Materia civil',
     
       bgColor: 'bg-teal-500'
     },
