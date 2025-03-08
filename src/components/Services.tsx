@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faLandmark, faPuzzlePiece } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { faUsers, faLandmark, faPuzzlePiece, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const Services: React.FC = () => {
   const sectionRef = React.useRef<HTMLDivElement>(null);
@@ -28,6 +28,13 @@ const Services: React.FC = () => {
       bgColor: 'bg-teal-500',
       description: 'Asesoría en materias civiles',
     },
+    // Nueva tarjeta con color azul:
+    {
+      icon: faVideo,
+      title: 'CONCILIACIONES VIRTUALES',
+      bgColor: 'bg-[#2F8CC5]',
+      description: 'Aplicable a todas las materias',
+    },
   ];
 
   const containerVariants = {
@@ -37,12 +44,16 @@ const Services: React.FC = () => {
 
   const itemVariants = {
     hidden: { y: 50, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
   };
 
   const handleServiceClick = () => {
-    window.scrollTo(0, 0); // Ajusta el scroll al principio de la página
-    navigate('/icon-details'); // Navega a la página de detalles
+    window.scrollTo(0, 0);
+    navigate('/icon-details');
   };
 
   return (

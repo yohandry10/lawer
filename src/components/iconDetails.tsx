@@ -15,7 +15,7 @@ const IconDetails: React.FC = () => {
     {
       id: 'civil',
       icon: faPuzzlePiece,
-      title: 'Contrataciones en Materia Civil',
+      title: 'Materia Civil',
       description: 'Nuestros servicios en materia civil incluyen las siguientes pretensiones conciliables:',
       items: [
         'Incumplimiento de contrato',
@@ -39,7 +39,7 @@ const IconDetails: React.FC = () => {
     {
       id: 'family',
       icon: faUsers,
-      title: 'Contrataciones en Materia de Familia',
+      title: 'Materia de Familia',
       description: 'Nuestros servicios en materia de familia comprenden las siguientes pretensiones conciliables:',
       items: [
         'Pensión de alimentos para ascendientes',
