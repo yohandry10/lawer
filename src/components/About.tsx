@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import gsap from 'gsap';
+import { Link as ScrollLink } from 'react-scroll';
 
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -97,11 +98,19 @@ const About: React.FC = () => {
               <p className="text-lg md:text-xl text-secondary-700 mb-6">
                 Nuestras oficinas cuentan con una moderna infraestructura.
               </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <button className="btn-outline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
-                  Ver más
-                </button>
-              </motion.div>
+              <ScrollLink
+                to="services"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <button className="btn-outline text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
+                    Ver más
+                  </button>
+                </motion.div>
+              </ScrollLink>
             </motion.div>
           </div>
         </div>
