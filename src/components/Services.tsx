@@ -15,25 +15,29 @@ const Services: React.FC = () => {
       title: 'Familia',
       bgColor: 'bg-teal-500',
       description: 'Servicios para asuntos de familia',
+      detailId: 'family',
     },
     {
       icon: faLandmark,
       title: 'Contrataciones con el Estado',
       bgColor: 'bg-[#2F8CC5]',
       description: 'Soluciones en contrataciones públicas',
+      detailId: 'estado',
     },
     {
       icon: faPuzzlePiece,
       title: 'Materia civil',
       bgColor: 'bg-teal-500',
       description: 'Asesoría en materias civiles',
+      detailId: 'civil',
     },
-    // Nueva tarjeta con color azul:
+    // Si deseas agregar la tarjeta de conciliaciones virtuales, asegúrate de que también exista en IconDetails
     {
       icon: faVideo,
       title: 'CONCILIACIONES VIRTUALES',
       bgColor: 'bg-[#2F8CC5]',
       description: 'Aplicable a todas las materias',
+      detailId: 'conciliaciones', // Verifica que exista este id en IconDetails o adapta la lógica
     },
   ];
 
@@ -51,9 +55,9 @@ const Services: React.FC = () => {
     },
   };
 
-  const handleServiceClick = () => {
+  const handleServiceClick = (detailId: string) => {
     window.scrollTo(0, 0);
-    navigate('/icon-details');
+    navigate(`/icon-details#${detailId}`);
   };
 
   return (
@@ -91,7 +95,7 @@ const Services: React.FC = () => {
           className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch"
         >
           {servicesData.map((service, index) => (
-            <div key={index} onClick={handleServiceClick}>
+            <div key={index} onClick={() => handleServiceClick(service.detailId)}>
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}

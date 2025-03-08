@@ -1,175 +1,133 @@
 import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUsers,
-  faLandmark,
-  faPuzzlePiece,
-  faVideo,
-  faBolt,         // Para "Rapidez"
-  faUserFriends,  // Para "Atención Personalizada"
-  faLock,         // Para "Confidencialidad"
-  faDollarSign,   // Para "Tarifas Competitivas"
-} from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 
-const Services: React.FC = () => {
-  const sectionRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
-  const navigate = useNavigate();
+const TEXT_BLUE = '#1D7BB8';
 
-  const servicesData = [
-    {
-      icon: faUsers,
-      title: 'Familia',
-      bgColor: 'bg-teal-500',
-      description: 'Servicios para asuntos de familia',
-    },
-    {
-      icon: faLandmark,
-      title: 'Contrataciones con el Estado',
-      bgColor: 'bg-[#2F8CC5]',
-      description: 'Soluciones en contrataciones públicas',
-    },
-    {
-      icon: faPuzzlePiece,
-      title: 'Materia civil',
-      bgColor: 'bg-teal-500',
-      description: 'Asesoría en materias civiles',
-    },
-    {
-      icon: faVideo,
-      title: 'CONCILIACIONES VIRTUALES',
-      bgColor: 'bg-[#2F8CC5]',
-      description: 'Aplicable a todas las materias',
-    },
-  ];
-
+/**
+ * AnimatedText: revela el texto letra a letra con efecto 3D.
+ * Se le pasa el texto, una clase CSS y un delay (en segundos) para iniciar.
+ * Además, se aplica el color pasado en la propiedad "color".
+ */
+const AnimatedText: React.FC<{
+  text: string;
+  className?: string;
+  delay?: number;
+  color?: string;
+}> = ({ text, className = '', delay = 0, color }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
     visible: {
-      y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: {
+        staggerChildren: 0.06,
+        delayChildren: delay,
+      },
     },
   };
 
-  const handleServiceClick = () => {
-    window.scrollTo(0, 0);
-    navigate('/icon-details'); // Ajusta la ruta de navegación según tu proyecto
+  const letterVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.8, rotateX: 90 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: { type: 'spring', stiffness: 500, damping: 30 },
+    },
   };
 
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative section-padding overflow-hidden py-16"
+    <motion.h1
+      className={className}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{ color }}
     >
-      {/* Fondo degradado detrás */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-white via-blue-50 to-white"
-        style={{ zIndex: -1 }}
-      ></div>
+      {text.split('').map((char, index) => (
+        <motion.span key={index} variants={letterVariants} className="inline-block">
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+};
 
-      <div className="container mx-auto px-4">
-        {/* Encabezado principal */}
-        <motion.div
+const Hero: React.FC = () => {
+  return (
+    <section
+      id="inicio"
+      className="relative bg-fixed bg-center bg-cover bg-no-repeat"
+      style={{ backgroundImage: "url('/banner.1.jpg')" }}
+    >
+      {/* Overlay oscuro para mejorar legibilidad */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      {/* Contenedor principal */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-white">
+        {/* Título alineado a la izquierda */}
+        <div className="text-left">
+          {/* "ACECOP," en blanco */}
+          <AnimatedText
+            text="ACECOP"
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight"
+            delay={0}
+            color="#fff"
+          />
+          {/* "Centro de Conciliación" en azul #1D7BB8 */}
+          <AnimatedText
+            text="Centro de Conciliación"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-2"
+            delay={0.8}
+            color={TEXT_BLUE}
+          />
+        </div>
+
+        {/* Descripción */}
+        <motion.p
+          className="mt-6 text-xl sm:text-2xl text-gray-200 max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Nuestros <span className="text-gradient">Servicios</span>
-          </h2>
-          <div className="w-24 h-1 bg-primary-500 mx-auto mb-6"></div>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto">
-            Ofrecemos soluciones efectivas para la resolución de conflictos en diversas áreas,
-            siempre buscando el mejor acuerdo para todas las partes involucradas.
-          </p>
-        </motion.div>
+          Somos un centro de conciliación con años de experiencia brindando
+          soluciones eficaces y duraderas a conflictos de toda índole.
+        </motion.p>
 
-        {/* Tarjetas de servicios */}
+        {/* Botón animado que redirige a WhatsApp */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch"
+          className="mt-10 inline-block"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.2, duration: 0.8 }}
         >
-          {servicesData.map((service, index) => (
-            <div key={index} onClick={handleServiceClick}>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                variants={itemVariants}
-                className={`cursor-pointer flex flex-col items-center justify-center p-12 rounded-xl shadow-lg transition-transform transform hover:-translate-y-2 hover:shadow-2xl ${service.bgColor} text-white h-full`}
-              >
-                <FontAwesomeIcon icon={service.icon} size="5x" />
-                <h3 className="text-4xl font-bold mt-6">{service.title}</h3>
-                <p className="text-xl mt-4 text-center">{service.description}</p>
-              </motion.div>
-            </div>
-          ))}
+          <a
+            href="https://wa.me/51953051904"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 rounded-full font-semibold transition-colors duration-300
+                       bg-white text-[#1D7BB8] border border-[#1D7BB8]
+                       hover:bg-[#1D7BB8] hover:text-white"
+          >
+            Solicitar Cita
+          </a>
         </motion.div>
 
-        {/* Texto de invitación final */}
+        {/* Flecha animada */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-16"
+          className="mt-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ delay: 3, duration: 1.5, repeat: Infinity }}
         >
-          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
-            ¿Necesitas ayuda con un conflicto específico? Nuestro equipo de expertos está listo para asistirte y encontrar la mejor solución.
-          </p>
+          <ArrowDown className="w-10 h-10 text-white" />
         </motion.div>
-
-        {/* SECCIÓN "¿Por qué elegirnos?" */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 py-12 px-4 bg-[#2F8CC5] text-white rounded-lg"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-            ¿Por qué elegirnos?
-          </h2>
-
-          {/* Cuatro columnas con íconos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {/* 1. Rapidez */}
-            <div className="flex flex-col items-center">
-              <FontAwesomeIcon icon={faBolt} size="3x" className="mb-4" />
-              <h3 className="text-xl font-semibold">Rapidez</h3>
-            </div>
-
-            {/* 2. Atención Personalizada */}
-            <div className="flex flex-col items-center">
-              <FontAwesomeIcon icon={faUserFriends} size="3x" className="mb-4" />
-              <h3 className="text-xl font-semibold">Atención Personalizada</h3>
-            </div>
-
-            {/* 3. Confidencialidad */}
-            <div className="flex flex-col items-center">
-              <FontAwesomeIcon icon={faLock} size="3x" className="mb-4" />
-              <h3 className="text-xl font-semibold">Confidencialidad</h3>
-            </div>
-
-            {/* 4. Tarifas Competitivas */}
-            <div className="flex flex-col items-center">
-              <FontAwesomeIcon icon={faDollarSign} size="3x" className="mb-4" />
-              <h3 className="text-xl font-semibold">Tarifas Competitivas</h3>
-            </div>
-          </div>
-        </motion.section>
       </div>
     </section>
   );
 };
 
-export default Services;
+export default Hero;

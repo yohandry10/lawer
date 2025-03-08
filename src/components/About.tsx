@@ -60,12 +60,12 @@ const About: React.FC = () => {
         {/* Contenedor del grid con ajuste responsivo */}
         <div className="md:relative md:left-[-70px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-left">
-            {/* Imagen (izquierda) */}
+            {/* Imagen (izquierda) y nombre debajo */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center md:justify-start"
+              className="flex flex-col justify-center md:justify-start items-center"
             >
               <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-xl">
                 <img
@@ -74,6 +74,9 @@ const About: React.FC = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
+              <p className="mt-2 text-center text-lg font-medium text-secondary-700">
+                Directora Sandra Pillaca V.
+              </p>
             </motion.div>
 
             {/* Texto (derecha) */}

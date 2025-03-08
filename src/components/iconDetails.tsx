@@ -1,14 +1,44 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faLandmark, faPuzzlePiece } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const IconDetails: React.FC = () => {
-  // Usamos useLayoutEffect para que el scroll se ajuste inmediatamente al montar el componente
+  const location = useLocation();
+
+  // Al montar el componente, se posiciona al inicio
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Efecto para realizar el scroll según el hash de la URL
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        // Espera breve para que el layout se haya renderizado
+        setTimeout(() => {
+          let scrollTarget = 0;
+          if (id === 'civil') {
+            // Materia Civil: alinear la parte superior de la sección con el top de la ventana
+            scrollTarget = element.offsetTop;
+          } else if (id === 'family') {
+            // Materia de Familia: centrar la sección en la ventana
+            scrollTarget = element.offsetTop - (window.innerHeight - element.offsetHeight) / 2;
+          } else if (id === 'estado') {
+            // Contrataciones con el Estado: forzamos que sea el final de la página
+            scrollTarget = document.body.scrollHeight - window.innerHeight;
+          }
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: 'smooth',
+          });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   // Datos de cada servicio
   const services = [
@@ -16,7 +46,8 @@ const IconDetails: React.FC = () => {
       id: 'civil',
       icon: faPuzzlePiece,
       title: 'Materia Civil',
-      description: 'Nuestros servicios en materia civil incluyen las siguientes pretensiones conciliables:',
+      description:
+        'Nuestros servicios en materia civil incluyen las siguientes pretensiones conciliables:',
       items: [
         'Incumplimiento de contrato',
         'Resolución de contrato',
@@ -40,7 +71,8 @@ const IconDetails: React.FC = () => {
       id: 'family',
       icon: faUsers,
       title: 'Materia de Familia',
-      description: 'Nuestros servicios en materia de familia comprenden las siguientes pretensiones conciliables:',
+      description:
+        'Nuestros servicios en materia de familia comprenden las siguientes pretensiones conciliables:',
       items: [
         'Pensión de alimentos para ascendientes',
         'Pensión de alimentos para hermanos',
@@ -60,7 +92,8 @@ const IconDetails: React.FC = () => {
       id: 'estado',
       icon: faLandmark,
       title: 'Contrataciones con el Estado',
-      description: 'En el ámbito de las contrataciones con el Estado ofrecemos soluciones que incluyen:',
+      description:
+        'En el ámbito de las contrataciones con el Estado ofrecemos soluciones que incluyen:',
       items: [
         'Resolución de contrato',
         'Ampliación del plazo contractual',
@@ -107,7 +140,11 @@ const IconDetails: React.FC = () => {
           className="mb-12 border-b pb-6"
         >
           <div className="flex items-center gap-4 mb-4">
-            <FontAwesomeIcon icon={service.icon} size="3x" className="text-primary-600" />
+            <FontAwesomeIcon
+              icon={service.icon}
+              size="3x"
+              className="text-primary-600"
+            />
             <h2 className="text-3xl font-bold">{service.title}</h2>
           </div>
           <p className="text-lg mb-4">{service.description}</p>
