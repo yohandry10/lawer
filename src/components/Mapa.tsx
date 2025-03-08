@@ -12,7 +12,7 @@ const Mapa: React.FC = () => {
           Te llevamos de la conciliación a la resolución del conflicto.
         </p>
         <a
-          href="https://wa.me/51953051904" // Reemplaza con tu número de WhatsApp
+          href="https://wa.me/51953051904"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 transition-colors"
@@ -31,17 +31,17 @@ const Mapa: React.FC = () => {
         </a>
       </div>
 
-      {/* Contenedor del mapa */}
+      {/* Contenedor del mapa (ancho completo, altura 600px) */}
       <div className="relative w-full h-[600px] mt-10">
         <iframe
-          title="Mapa ACECOP"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.39610667866!2d-77.05696622565431!3d-11.999630039464294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce4ca388b2c5%3A0xc49344104b57e833!2sAv.%20Carlos%20Izaguirre%20200%2C%20Independencia%2015311%2C%20Per%C3%BA!5e0!3m2!1ses!2sus!4v1679362943817!5m2!1ses!2sus"
-          className="absolute top-0 left-0 w-full h-full"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1951.3936577674065!2d-77.0619068421085!3d-11.989213497060785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce53ca933687%3A0xc02c6d4d01004fbd!2sSan%20L%C3%A1zaro%20Center!5e0!3m2!1ses!2sus!4v1741457514244!5m2!1ses!2sus"
           style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-        />
+          className="absolute top-0 left-0 w-full h-full"
+          title="San Lázaro Center Map"
+        ></iframe>
       </div>
     </section>
   );
