@@ -84,7 +84,7 @@ const About: React.FC = () => {
               className="text-block"
             >
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-secondary-900">
-                Centro de Conciliación ACECOP1
+                Centro de Conciliación ACECOP
               </h3>
               <p className="text-lg md:text-xl text-secondary-700 mb-4">
                 <strong>ACECOP</strong> es una asociación sin fines de lucro,
